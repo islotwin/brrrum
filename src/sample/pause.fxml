@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<AnchorPane id="pane" maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #43474a;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerPause">
+   <children>
+      <Polygon fx:id="fxplay" fill="WHITE" layoutX="200.0" layoutY="252.0" onMouseClicked="#handleFxPlayAction" onMouseEntered="#handleMouse" onMouseExited="#handleMouse" rotate="90.0" scaleX="1.8" scaleY="1.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <effect>
+            <DropShadow color="#151716" height="44.72" radius="22.002499999999998" spread="0.08" width="45.29" />
+         </effect>
+         <points>
+            <Double fx:value="-50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-60.0" />
+         </points>
+      </Polygon>
+      <Text fx:id="fxask" fill="WHITE" layoutX="355.0" layoutY="51.0" onMouseClicked="#handleAskAction" onMouseEntered="#handleMouse" onMouseExited="#handleMouse" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="30.21875">
+         <effect>
+            <DropShadow color="#1f221f" height="54.4" radius="22.9025" spread="0.04" width="39.21" />
+         </effect>
+         <font>
+            <Font name="Helvetica Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text fx:id="fxscore" fill="WHITE" layoutX="169.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="61.572265625">
+         <effect>
+            <DropShadow color="#0d0d0d" height="33.14" radius="21.3825" spread="0.06" width="54.39" />
+         </effect>
+         <font>
+            <Font name="Helvetica Bold" size="28.0" />
+         </font>
+      </Text>
+      <Label layoutX="150.0" layoutY="403.0" pickOnBounds="false" text="SCORE" textFill="WHITE" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Helvetica Bold" size="28.0" />
+         </font>
+         <effect>
+            <DropShadow color="#0d0d0d" />
+         </effect>
+      </Label>
+   </children>
+</AnchorPane>

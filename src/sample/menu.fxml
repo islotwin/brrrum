@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<AnchorPane id="pane" maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #43474a;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Polygon fx:id="fxplay" fill="WHITE" layoutX="200.0" layoutY="252.0" onMouseClicked="#handleFxPlayAction" onMouseEntered="#handleMouse" onMouseExited="#handleMouse" rotate="90.0" scaleX="1.8" scaleY="1.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+        <points>
+          <Double fx:value="-50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="0.0" />
+          <Double fx:value="-60.0" />
+        </points>
+         <effect>
+            <DropShadow color="#171616" height="45.15" radius="22.11" spread="0.08" width="45.29" />
+         </effect>
+      </Polygon>
+      <Text fx:id="fxask" fill="WHITE" layoutX="355.0" layoutY="51.0" onMouseClicked="#handleAskAction" onMouseEntered="#handleMouse" onMouseExited="#handleMouse" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="30.21875">
+         <font>
+            <Font name="Helvetica Bold" size="48.0" />
+         </font>
+         <effect>
+            <DropShadow color="#141313" height="24.04" radius="10.76" spread="0.04" />
+         </effect>
+      </Text>
+      <Text fill="WHITE" layoutX="115.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIGHSCORE" textOrigin="CENTER">
+         <font>
+            <Font name="Helvetica Bold" size="28.0" />
+         </font>
+         <effect>
+            <DropShadow spread="0.07" />
+         </effect>
+      </Text>
+      <AnchorPane fx:id="fxcircle" layoutX="-56.0" layoutY="456.0" onMouseClicked="#handleCircleAction" onMouseEntered="#handleMouse" onMouseExited="#handleMouse" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" scaleX="0.3" scaleY="0.3">
+         <children>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" startAngle="-90.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.6682692307692308">
+                     <stops>
+                        <Stop color="#d5ffcd" />
+                        <Stop color="#068c21" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" startAngle="-135.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.6682692307692308">
+                     <stops>
+                        <Stop color="#fffbfb" />
+                        <Stop color="#757575" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" startAngle="90.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop color="#6d5a7c" />
+                        <Stop color="#e3c4ff" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" startAngle="135.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endX="0.3076923076923077" endY="0.7115384615384616" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="#97d3cb" />
+                        <Stop color="#349fbf" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" startAngle="180.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop color="#f2e4bf" />
+                        <Stop color="#ffc51e" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" startAngle="-45.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#f1f5d1" />
+                        <Stop color="#f4f702" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" startAngle="45.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endX="0.7115384615384616" endY="0.033653846153846145" startX="0.23557692307692313" startY="0.6490384615384616">
+                     <stops>
+                        <Stop color="#9ca1a0" />
+                        <Stop color="BLACK" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+            <Arc layoutX="100.0" layoutY="100.0" length="45.0" radiusX="96.0" radiusY="97.0" stroke="#393939a1" strokeType="INSIDE" strokeWidth="2.0" type="ROUND">
+               <fill>
+                  <LinearGradient endX="0.0625" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop color="#901b1b" />
+                        <Stop color="#ffaeae" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Arc>
+         </children>
+         <effect>
+            <DropShadow color="#141313" />
+         </effect>
+      </AnchorPane>
+      <Text fx:id="fxhigh" fill="WHITE" layoutX="177.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="45.572265625">
+         <effect>
+            <DropShadow color="#0d0d0d" height="33.14" radius="21.3825" spread="0.06" width="54.39" />
+         </effect>
+         <font>
+            <Font name="Helvetica Bold" size="28.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
