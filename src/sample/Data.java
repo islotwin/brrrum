@@ -10,7 +10,8 @@ import javafx.stage.Stage;
 import java.util.Vector;
 
 /**
- * Created by iga on 21.05.2017.
+ * Created by Iga Slotwinska on 21.05.2017.
+ * Contains data and setter/getter methods
  */
 public class Data {
     private static int gateHeight = 48;
@@ -23,14 +24,13 @@ public class Data {
     private static Effect effect = null;
     private static double      DELTA = 4;
 
-    private static ImageView statAuto = null;      //nieauto jako auto, tylko x,y itd
+    private static ImageView statAuto = null;
     private static Stage activStage = null;
     private static Image autoColor = null;
     private static AnchorPane rectanglePane = null;
     private static AnchorPane anchorPane = null;
     private static Image gateImage = View.LoadGate("gate");
     private static Image blockImage = View.LoadGate("blockage");
-
 
     private static double PROBA = 1;
     private static double probability = PROBA;
@@ -57,6 +57,9 @@ public class Data {
         highscore = temp;
     }
 
+    /**
+     * Method used to prepare for new game
+     */
     static public void clearData ()
     {
       gates.clear();
@@ -70,7 +73,9 @@ public class Data {
       score =0;
     }
 
-
+    /**
+     * @return vector containing visible gates
+     */
     static public Vector<ImageView> getGates ()
     {
         return gates;
@@ -81,23 +86,31 @@ public class Data {
         anchorPane =temp;
     }
 
+    /**
+     * add new Gate
+     * @param random - offset of X
+     */
     static  void addGates ( int random)
     {
-       // Gate gate = new Gate(gateImage,  random); /*    bez sensu jest ten gejt jako klasa     */
-
         gates.add(View.setGate(gateImage, random));
-//        (activStage.getScene().getRoot()).getChildrenUnmodifiable().add(gates.lastElement());
         anchorPane.getChildren().add(gates.lastElement());
         gates.lastElement().toFront();
         statAuto.toFront();
     }
 
+    /**
+     * remove first Gate after passing
+     */
     static  void removeGates ()
     {
         anchorPane.getChildren().remove(gates.firstElement());
         gates.remove(0);
     }
 
+    /**
+     * add new Blockage
+     * @param random - offset of X
+     */
     static  void addBlockages (int random )
     {
         blockages.add(View.setGate(blockImage, random));
@@ -106,11 +119,17 @@ public class Data {
         statAuto.toFront();
     }
 
+    /**
+     * @return vector containing visible blockages
+     */
     static public Vector<ImageView> getBlockages ()
     {
         return blockages;
     }
 
+    /**
+     * remove Blockage after moving accross the screen
+     */
     static  void removeBlockages ()
     {
         anchorPane.getChildren().remove(blockages.firstElement());
@@ -258,5 +277,51 @@ public class Data {
         statAuto.setLayoutY(temp);
     }
 
+    static double getFirstGateY ()
+    {
+        if(!gates.isEmpty())
+            return gates.firstElement().getLayoutY();
+        return -1;
+    }
+    static double getFirstGateX ()
+    {
+        if(!gates.isEmpty())
+            return gates.firstElement().getLayoutX();
+        return -1;
+    }
+
+    static double getFirstBlockageY ()
+    {
+        if(!blockages.isEmpty())
+            return blockages.firstElement().getLayoutY();
+        return -1;
+    }
+
+    /**
+     *
+     * @return - Y coordinate of the most recent element - Blockage or Gate
+     */
+    static double getLastGate ()
+    {
+        if(!gates.isEmpty()) {
+            if(!blockages.isEmpty()) {
+                return Math.min(gates.lastElement().getLayoutY(), blockages.lastElement().getLayoutY());
+            }
+            return gates.lastElement().getLayoutY();
+        }
+        if(!blockages.isEmpty())
+            return blockages.lastElement().getLayoutY();
+        return -1;
+    }
+
+    static double getStageHeight ()
+    {
+        return activStage.getHeight();
+    }
+
+    static double getStageWidth ()
+    {
+        return activStage.getWidth();
+    }
 
 }

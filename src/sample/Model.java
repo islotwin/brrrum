@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -11,31 +10,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 /**
- * Created by iga on 15.05.2017.
+ * Created by Iga Slotwinska on 15.05.2017.
+ * Checks collisions between nodes, generates new nodes.
+ * Moves visible objects - the car, gates, blockages, strips on the road
  */
 public class Model {
 
-
-     static double getFirstGate ()
-    {
-        if(!Data.getGates().isEmpty())
-       return Data.getGates().firstElement().getLayoutY();
-        return -1;
-    }
-
-     static double getLastGate ()
-    {
-        if(!Data.getGates().isEmpty()) {
-            if(!Data.getBlockages().isEmpty()) {
-                return Math.min(Data.getGates().lastElement().getLayoutY(), Data.getBlockages().lastElement().getLayoutY());
-            }
-            return Data.getGates().lastElement().getLayoutY();
-        }
-        if(!Data.getBlockages().isEmpty())
-            return Data.getBlockages().lastElement().getLayoutY();
-        return -1;
-    }
-
+    /**
+     * Method generating Blockages and Gates
+     * @param coefficent - probability of generating next object
+     * @return - true if object was generated, false - not
+     */
      static boolean generateGate (double coefficent)
     {
         Image image;
@@ -57,12 +42,15 @@ public class Model {
         return false;
     }
 
+    /**
+     * Checks whether car collides with the first gate. Calls gameOver, when gate was missed
+     */
      static boolean checkCollision()
     {
         if(!Data.getGates().isEmpty()) {
             ImageView first =  (Data.getGates()).firstElement();
 
-            if (getFirstGate() + Data.getGateHeight() >= Data.getAutoY()) {
+            if (Data.getFirstGateY() + Data.getGateHeight() >= Data.getAutoY()) {
                 if (first.getLayoutX() + Data.getGateWidth() >= Data.getAutoWidth() + Data.getAutoX()) {
                     if(first.getLayoutX()<=Data.getAutoX()) {
                         return true;
@@ -74,6 +62,9 @@ public class Model {
         return false;
     }
 
+    /**
+     * Checks collisions with all blockages. Calls gameOver, after driving at blockage
+     */
      static void checkBlockages ()
     {
         double cy = Data.getAutoY();
@@ -94,6 +85,9 @@ public class Model {
         }
     }
 
+    /**
+     * Changes the state of the flag gameOver. If new highscore is achieved, writes it into file.
+     */
      static void gameOver()
     {
         if (Data.getHighscore()<Data.getScore())
@@ -111,19 +105,27 @@ public class Model {
     }
 
 
+    /**
+     * While car is driving through the gate, it cant escape the gate
+     * @param dx - new X coordinate of the car
+     */
      static void setBoundaries (double dx)
     {
-        ImageView first = Data.getGates().firstElement(); /*    tak jak z autem !!! TODO*/
-        if(dx<first.getLayoutX())
-            Data.setAutoX(first.getLayoutX());
-        else if(dx+Data.getAutoWidth()>first.getLayoutX()+first.getFitWidth())
-            Data.setAutoX(first.getLayoutX()+Data.getGateWidth()-Data.getAutoWidth());
+        if(dx<Data.getFirstGateX())
+            Data.setAutoX(Data.getFirstGateX());
+        else if(dx+Data.getAutoWidth()>Data.getFirstGateX()+Data.getGateWidth())
+            Data.setAutoX(Data.getFirstGateX()+Data.getGateWidth()-Data.getAutoWidth());
         else
             Data.setAutoX(dx);
     }
 
 
-     static void moveCar( double dx, double dy) /*    potrzebuje imageview tu???*/
+    /**
+     * Sets new coordinates of the car.
+     * @param dx - movement in the X coordinate
+     * @param dy - movement in the Y coordinate
+     */
+     static void moveCar( double dx, double dy)
     {
         dy+=Data.getAutoY();
         dx+=Data.getAutoX();
@@ -132,69 +134,60 @@ public class Model {
             setBoundaries(dx);
         else if (dx<0 )
             Data.setAutoX(0);
-        else if (dx>(Data.getActivStage().getWidth()-Data.getAutoWidth()))
-            Data.setAutoX(Data.getActivStage().getWidth()-Data.getAutoWidth());
+        else if (dx>(Data.getStageWidth()-Data.getAutoWidth()))
+            Data.setAutoX(Data.getStageWidth()-Data.getAutoWidth());
         else
             Data.setAutoX(dx);
 
         if (dy<0 )
             Data.setAutoY(0);
-        else if (dy>(Data.getActivStage().getHeight()-Data.getAutoHeight()))
-            Data.setAutoY(Data.getActivStage().getHeight()-Data.getAutoHeight());
+        else if (dy>(Data.getStageHeight()-Data.getAutoHeight()))
+            Data.setAutoY(Data.getStageHeight()-Data.getAutoHeight());
         else
             Data.setAutoY(dy);
     }
 
 
-
-     static void moveGates (double dy)
+    /**
+     *
+     */
+     static void moveGates ()
     {
         for (ImageView iv:  Data.getGates()
              ) {
-            double moveY = dy+iv.getLayoutY();
-            iv.setLayoutY(moveY);
+            iv.setLayoutY(Data.getDELTA()+iv.getLayoutY());
         }
-        if (getFirstGate()>=Data.getAutoY()+Data.getAutoHeight()) {
+        if (Data.getFirstGateY()>=Data.getAutoY()+Data.getAutoHeight()) {
             Data.addScore(1);
             Data.removeGates();
         }
 
     }
 
-     static void moveBlockages (double dy) {
+     static void moveBlockages () {
         for (ImageView iv : Data.getBlockages()
                 ) {
-            double moveY = dy + iv.getLayoutY();
-                iv.setLayoutY(moveY);
+                iv.setLayoutY(Data.getDELTA() + iv.getLayoutY());
         }
         if (!Data.getBlockages().isEmpty()) {
-            if (Data.getBlockages().firstElement().getLayoutY() >= (Data.getActivStage().getHeight()+ Data.getGateHeight())) {
+            if (Data.getFirstBlockageY() >= (Data.getStageHeight()+ Data.getGateHeight())) {
                 Data.removeBlockages();
             }
         }
     }
 
-     static void moveRectangles (double dy) {
-        for (Node iv : Data.getRectanglePane().getChildren() // ( (AnchorPane)Data.getActivStage().getScene().getRoot().getChildrenUnmodifiable().get(1)).getChildren()
-                ) {
-            double moveY = dy + iv.getLayoutY();
 
-            if (moveY >=Data.getRectanglePane().getPrefHeight())
-                iv.setLayoutY(0);
-            else
-                iv.setLayoutY(moveY);
-        }
-    }
-
-
+    /**
+     * Changes the probality of generating new elements. Increments the velocity and probability with each call
+     * @param dx - movement of the car in the X coordinate
+     * @param dy - movement of the car in the Y coordinate
+     */
      static void update(double dx, double dy)
     {
-        Data.setDELTA(Data.getDELTA()+0.002);
-
         moveCar( dx, dy);
         if(!Data.getBlockages().isEmpty() || !Data.getGates().isEmpty())
         {
-            if ( getLastGate()>=(Data.getAutoHeight()+ Data.getGateHeight()))
+            if ( Data.getLastGate()>=(Data.getAutoHeight()+ Data.getGateHeight()))
             {
                 if(generateGate(Data.getProbability())==true)
                     Data.setProbability(Data.getPROBA ());
@@ -210,9 +203,10 @@ public class Model {
                 Data.setProbability(Data.getProbability ()*1.1);
 
         }
-        moveBlockages(Data.getDELTA());
-        moveGates (Data.getDELTA());
-        moveRectangles (Data.getDELTA()); /*   wez to napraw   */
+        moveBlockages();
+        moveGates ();
+        View.moveRectangles (); /*   wez to napraw   */
+        Data.setDELTA(Data.getDELTA()+0.002);
         Data.setPROBA(Data.getPROBA() +0.002);
     }
 }

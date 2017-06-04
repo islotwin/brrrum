@@ -7,10 +7,16 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 /**
- * Created by iga on 28.05.2017.
+ * Created by Iga Slotwinska on 28.05.2017.
+ * Base for other controllers
  */
 public class ControllerBase {
 
+    /**
+     * Calls applying and removing of the Glow effect when entering or exiting node
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handleMouse (MouseEvent event) throws IOException
     {
@@ -20,17 +26,27 @@ public class ControllerBase {
             View.removeEffect((Node) event.getSource());
     }
 
+    /**
+     * Start the game
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handleFxPlayAction (MouseEvent event) throws IOException
     {
         try {
-            View.loadGameScene();  /*  STARE DANE NIE NOWE !!!! - pacz model ???*/
+            View.loadGameScene("road2.fxml");  /*  STARE DANE NIE NOWE !!!! - pacz model ???*/
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
+    /**
+     * Go back to previous scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handleFxArrowAction (MouseEvent event) throws IOException
     {

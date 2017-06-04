@@ -5,14 +5,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -22,110 +23,71 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * Created by iga on 19.05.2017.
+ * Created by Iga Slotwinska on 19.05.2017.
+ * View - adjust Nodes' properties for Graphics
  */
 public class View {
 
 
-    public static void loadGameScene() throws IOException {
-
+    /**
+     * Method used when switching scenes, changes color of the car
+     * @param name - name of the fxml file to open
+     * @throws IOException - when file not found
+     */
+    public static void loadGameScene(String name) throws IOException {
         Stage stage = Data.getActivStage();
-
-        //  Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        AnchorPane root = FXMLLoader.load(Main.class.getResource("road2.fxml"));
+        AnchorPane root = FXMLLoader.load(Main.class.getResource(name));
         if (Data.getAutoColor() != null)
             ((ImageView) root.getChildren().get(root.getChildren().size() - 1)).setImage(Data.getAutoColor());
         stage.getScene().setRoot(root);
-        View.setScene(root, stage.getScene());
     }
 
+    /**
+     * Method used when switching scenes
+     * @param name - name of the fxml file to open
+     * @throws IOException - when file not found
+     */
     public static void loadScene(String name) throws IOException {
-        Stage app_stage = Data.getActivStage();
+        Stage stage = Data.getActivStage();
         AnchorPane root = FXMLLoader.load(Main.class.getResource(name));
-
-        if (name.equals("choose-palette.fxml")) {
-            if (Data.getAutoColor() != null)
-                ((ImageView) root.getChildren().get(root.getChildren().size() - 1)).setImage(Data.getAutoColor());
-        }
-        app_stage.getScene().setRoot(root);
+        stage.getScene().setRoot(root);
     }
 
-
-    public static void setScene(AnchorPane root, Scene scene) {
-/*
-        Node top =
-                root.getChildren().size() > 0
-                        ? root.getChildren().get(root.getChildren().size() - 1)
-                        : null;
-
-
-        for (int i=0; i< 5; ++i)
-        {
-            Rectangle rect = new Rectangle( Data.getActivStage().getScene().getWidth()/2, -100, 5,80);
-            rect.setFill(Color.WHITE);
-            Path newpath = new Path();
-            newpath = createPath(newpath, rect, rect.getY());
-            // newpath.getElements().addAll(pathElements);
-            PathTransition newanim = new PathTransition();
-            newanim.setNode(rect);
-            newanim.setPath(newpath);
-            newanim.setDuration(Duration.seconds(2));
-            newanim.setDelay(Duration.seconds(i*0.4));
-            newanim.setAutoReverse(false);
-            //newanim.setRate(0.05);
-            newanim.setCycleCount(Timeline.INDEFINITE);
-            root.getChildren().add(rect);
-            newanim.setInterpolator(Interpolator.LINEAR);
-
-            newanim.play();
-        }
-
-        top.toFront();
-*/
-    }
-
+    /**
+     * Adds Glow effect, which is shown on mouse entering the node
+     * @param node - node, which mouse enters
+     */
     public static void applyEffect(Node node) {
         Data.setEffect(node.getEffect());
         node.setEffect(new Glow());
     }
 
+    /**
+     * Removes Glow effect, on mouse exit
+     * @param node - node, which mouse exits
+     */
     public static void removeEffect(Node node) {
         node.setEffect(Data.getEffect());
     }
 
+    /**
+     * Method to move rectangles on the road across the screen
+     */
+    static void moveRectangles () {
+        for (Node iv : Data.getRectanglePane().getChildren()  ) {
+            double moveY = Data.getDELTA() + iv.getLayoutY();
 
-    public static Path createPath(Path p, Rectangle r, double y) {
-        PathElement[] pathElements =
-                {
-                        //new MoveTo(r.getX(), y),
-                        new MoveTo(r.getX(), -(r.getHeight())),
-                        new LineTo(r.getX(), 600 + (r.getHeight() / 2)),
-                        new MoveTo(r.getX(), -(r.getHeight())),
-                        //new LineTo(r.getX(), y),
-
-                        //   new LineTo(rectangle.getX(), rectangleY),
-                        new ClosePath()
-                };
-
-        p.getElements().addAll(pathElements);
-
-        return p;
-    }
-
-
-    public static void moveRectangles(double dy) {
-
-        for (Node rectangle : Data.getActivStage().getScene().getRoot().getChildrenUnmodifiable().subList(6, 6)
-                ) {
-            double moveY = dy + rectangle.getLayoutY();
-            if (moveY > Data.getActivStage().getScene().getHeight())
-                rectangle.setLayoutY(-1 * 66);
+            if (moveY >=Data.getRectanglePane().getPrefHeight())
+                iv.setLayoutY(0);
             else
-                rectangle.setLayoutY(moveY);
+                iv.setLayoutY(moveY);
         }
     }
 
-
+    /**
+     * Method creates path transition animation, called when game is over
+     * @param node - node to which animation will be applied
+     */
     public static void endingPath(Node node) {
         Path path = new Path();
         PathTransition pathTransition = new PathTransition();
@@ -150,9 +112,14 @@ public class View {
         });
     }
 
+    /**
+     * Sets up the features of each Gate, Blockage
+     * @param image - which image: Gate or Blockage
+     * @param offset - which part of the road
+     * @return - final image
+     */
    public static ImageView setGate (Image image, int offset)   /*  czy to nie moze byc static ? w modelu i tak biere imageview i w ogle dziwne to*/
     {
-
         ImageView imageview = new ImageView();
         imageview.setImage(image);
         imageview.setLayoutX(75 + (offset*125));
@@ -178,6 +145,12 @@ public class View {
         return null;
     }
 
+    /**
+     * Method loads the previous state of the game (before pause)
+     * @param fxpane - model of the pane
+     * @param fxauto - model of the car
+     * @param fxscore - previous score
+     */
     public static void loadModel (AnchorPane fxpane, ImageView fxauto, Text fxscore )
     {
         fxpane.getChildren().addAll(Data.getGates());
@@ -185,7 +158,6 @@ public class View {
         fxauto.setLayoutX(Data.getStatAuto().getLayoutX() );
         fxauto.setLayoutY(Data.getStatAuto().getLayoutY());
         Data.setStatAuto(fxauto);
-       // fxauto.toFront();
         fxscore.setText(Integer.toString(Data.getScore()));
     }
 
@@ -193,6 +165,5 @@ public class View {
     {
         fxauto.toFront();
         fxauto.setFocusTraversable(true);
-
     }
 }

@@ -11,7 +11,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * Created by iga on 21.05.2017.
+ * Created by Iga Slotwinska on 21.05.2017.
+ * Controller for choose-palette.fxml file
  */
 public class ControllerColor extends ControllerBase {
 
@@ -37,6 +38,11 @@ public class ControllerColor extends ControllerBase {
     @FXML
     Arc fxorange;
 
+    /**
+     * Loads new image of the car in the chosen color
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handleFxArcAction (MouseEvent event) throws IOException
     {
@@ -67,6 +73,13 @@ public class ControllerColor extends ControllerBase {
     private void initialize( )  {
         assert fxarrow != null : "fx:id=\"fxarrow\" was not injected: check your FXML file 'color-palette.fxml'.";
         assert fxauto != null : "fx:id=\"fxauto\" was not injected: check your FXML file 'color-palette.fxml'.";
+        assert fxgreen != null : "fx:id=\"fxgreen\" was not injected: check your FXML file 'color-palette.fxml'.";
+        assert fxviolet != null : "fx:id=\"fxviolet\" was not injected: check your FXML file 'color-palette.fxml'.";
+        assert fxorange != null : "fx:id=\"fxorange\" was not injected: check your FXML file 'color-palette.fxml'.";
+        assert fxyellow != null : "fx:id=\"fxyellow\" was not injected: check your FXML file 'color-palette.fxml'.";
+        assert fxgrey != null : "fx:id=\"fxgrey\" was not injected: check your FXML file 'color-palette.fxml'.";
+        assert fxblack != null : "fx:id=\"fxblack\" was not injected: check your FXML file 'color-palette.fxml'.";
+        assert fxblue != null : "fx:id=\"fxblue\" was not injected: check your FXML file 'color-palette.fxml'.";
 
     }
 

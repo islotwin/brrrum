@@ -10,7 +10,11 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-
+/**
+ * Created by Iga Slotwinska on 15.05.2017.
+ * Controller for the gameplay
+ * road2.fxml
+ */
 public class ControllerGame extends ControllerBase {
     AnimationTimer timer;
     boolean up, down, left, right;
@@ -27,6 +31,10 @@ public class ControllerGame extends ControllerBase {
     Text fxscore;
 
 
+    /**
+     * Event handler for the car movement
+     * @param event  key pressed
+     */
     @FXML
     public void KeyPressed (KeyEvent event){
 
@@ -39,6 +47,10 @@ public class ControllerGame extends ControllerBase {
         }
     }
 
+    /**
+     * Event handler for the car movement
+     * @param event  key realeased
+     */
     @FXML
     public void KeyReleased (KeyEvent event){
 
@@ -60,10 +72,14 @@ public class ControllerGame extends ControllerBase {
         startGame();
     }
 
+    /**
+     * Pausing the game
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void handleFxPauseAction (MouseEvent event) throws IOException
     {
-        //Data.setModel(model);
         Data.setStatAuto(fxauto);
         timer.stop();
         try {
@@ -73,7 +89,9 @@ public class ControllerGame extends ControllerBase {
         }
     }
 
-
+    /**
+     * Start the game, load data after break or start with new model
+     */
     private void startGame ()
     {
         if(Data.getPrev()=="menu.fxml")
