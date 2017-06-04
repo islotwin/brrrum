@@ -10,6 +10,8 @@ import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
@@ -21,6 +23,7 @@ import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by Iga Slotwinska on 19.05.2017.
@@ -31,8 +34,8 @@ public class View {
 
     /**
      * Method used when switching scenes, changes color of the car
-     * @param name - name of the fxml file to open
-     * @throws IOException - when file not found
+     * @param name  name of the fxml file to open
+     * @throws IOException  when file not found
      */
     public static void loadGameScene(String name) throws IOException {
         Stage stage = Data.getActivStage();
@@ -44,8 +47,8 @@ public class View {
 
     /**
      * Method used when switching scenes
-     * @param name - name of the fxml file to open
-     * @throws IOException - when file not found
+     * @param name name of the fxml file to open
+     * @throws IOException  when file not found
      */
     public static void loadScene(String name) throws IOException {
         Stage stage = Data.getActivStage();
@@ -55,7 +58,7 @@ public class View {
 
     /**
      * Adds Glow effect, which is shown on mouse entering the node
-     * @param node - node, which mouse enters
+     * @param node  node, which mouse enters
      */
     public static void applyEffect(Node node) {
         Data.setEffect(node.getEffect());
@@ -64,7 +67,7 @@ public class View {
 
     /**
      * Removes Glow effect, on mouse exit
-     * @param node - node, which mouse exits
+     * @param node  node, which mouse exits
      */
     public static void removeEffect(Node node) {
         node.setEffect(Data.getEffect());
@@ -86,7 +89,7 @@ public class View {
 
     /**
      * Method creates path transition animation, called when game is over
-     * @param node - node to which animation will be applied
+     * @param node  node to which animation will be applied
      */
     public static void endingPath(Node node) {
         Path path = new Path();
@@ -114,9 +117,9 @@ public class View {
 
     /**
      * Sets up the features of each Gate, Blockage
-     * @param image - which image: Gate or Blockage
-     * @param offset - which part of the road
-     * @return - final image
+     * @param image  which image: Gate or Blockage
+     * @param offset  which part of the road
+     * @return  processed image
      */
    public static ImageView setGate (Image image, int offset)   /*  czy to nie moze byc static ? w modelu i tak biere imageview i w ogle dziwne to*/
     {
@@ -147,9 +150,9 @@ public class View {
 
     /**
      * Method loads the previous state of the game (before pause)
-     * @param fxpane - model of the pane
-     * @param fxauto - model of the car
-     * @param fxscore - previous score
+     * @param fxpane  model of the pane
+     * @param fxauto  model of the car
+     * @param fxscore  previous score
      */
     public static void loadModel (AnchorPane fxpane, ImageView fxauto, Text fxscore )
     {
@@ -165,5 +168,13 @@ public class View {
     {
         fxauto.toFront();
         fxauto.setFocusTraversable(true);
+    }
+
+    public static void setMusic ()
+    {
+        URL source = Main.class.getResource("/graphics/szczurek.mp3");
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(source.toString()));
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
 }

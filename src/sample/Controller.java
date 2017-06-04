@@ -60,7 +60,6 @@ public class Controller extends ControllerBase {
         assert fxask != null : "fx:id=\"fxask\" was not injected: check your FXML file 'menu.fxml'.";
         assert fxhigh != null : "fx:id=\"fxhigh\" was not injected: check your FXML file 'menu.fxml'.";
 
-
         if (!new File("score.txt").exists()) {
             try {
                 Writer writer = new FileWriter("./score.txt");

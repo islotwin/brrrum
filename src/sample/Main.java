@@ -20,6 +20,8 @@ public class Main extends Application {
         primaryStage.setScene(sceneMenu);
         primaryStage.setTitle("BRRRUM");
         primaryStage.show();
+        View.setMusic();
+
     }
 
 

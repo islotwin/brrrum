@@ -14,7 +14,7 @@ public class ControllerBase {
 
     /**
      * Calls applying and removing of the Glow effect when entering or exiting node
-     * @param event
+     * @param event mouse moving
      * @throws IOException
      */
     @FXML
@@ -28,14 +28,14 @@ public class ControllerBase {
 
     /**
      * Start the game
-     * @param event
+     * @param event mouse click
      * @throws IOException
      */
     @FXML
     private void handleFxPlayAction (MouseEvent event) throws IOException
     {
         try {
-            View.loadGameScene("road2.fxml");  /*  STARE DANE NIE NOWE !!!! - pacz model ???*/
+            View.loadGameScene("road2.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,7 +44,7 @@ public class ControllerBase {
 
     /**
      * Go back to previous scene
-     * @param event
+     * @param event mouse click
      * @throws IOException
      */
     @FXML
@@ -61,7 +61,7 @@ public class ControllerBase {
     private void handleAskAction (MouseEvent event) throws IOException
     {
         try {
-            View.loadScene("help.fxml");
+            View.loadGameScene("help.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
