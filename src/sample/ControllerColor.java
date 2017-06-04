@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Arc;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -15,10 +14,8 @@ import java.io.IOException;
  * Controller for choose-palette.fxml file
  */
 public class ControllerColor extends ControllerBase {
-
     @FXML
     AnchorPane fxarrow;
-
     @FXML
     ImageView fxauto;
     @FXML
@@ -44,33 +41,30 @@ public class ControllerColor extends ControllerBase {
      * @throws IOException
      */
     @FXML
-    private void handleFxArcAction (MouseEvent event) throws IOException
-    {
+    private void handleFxArcAction(MouseEvent event) throws IOException {
         Image image;
-        if(event.getSource()==fxgreen)
+        if (event.getSource() == fxgreen)
             image = new Image(new FileInputStream("src/graphics/green.png"));
-        else if(event.getSource()==fxorange)
+        else if (event.getSource() == fxorange)
             image = new Image(new FileInputStream("src/graphics/orange.png"));
-        else if(event.getSource()==fxyellow)
+        else if (event.getSource() == fxyellow)
             image = new Image(new FileInputStream("src/graphics/yellow.png"));
-        else if(event.getSource()==fxgrey)
+        else if (event.getSource() == fxgrey)
             image = new Image(new FileInputStream("src/graphics/grey.png"));
-        else if(event.getSource()==fxblack)
+        else if (event.getSource() == fxblack)
             image = new Image(new FileInputStream("src/graphics/black.png"));
-        else if(event.getSource()==fxblue)
+        else if (event.getSource() == fxblue)
             image = new Image(new FileInputStream("src/graphics/blue.png"));
-        else if(event.getSource()==fxviolet)
+        else if (event.getSource() == fxviolet)
             image = new Image(new FileInputStream("src/graphics/violet.png"));
          else
             image = new Image(new FileInputStream("src/graphics/brum.png"));
-        fxauto.setImage(image);     /*  do widoku ewentualnie   */
+        fxauto.setImage(image);
         Data.setAutoColor(image);
     }
 
-
-
     @FXML
-    private void initialize( )  {
+    private void initialize()  {
         assert fxarrow != null : "fx:id=\"fxarrow\" was not injected: check your FXML file 'color-palette.fxml'.";
         assert fxauto != null : "fx:id=\"fxauto\" was not injected: check your FXML file 'color-palette.fxml'.";
         assert fxgreen != null : "fx:id=\"fxgreen\" was not injected: check your FXML file 'color-palette.fxml'.";
@@ -80,8 +74,5 @@ public class ControllerColor extends ControllerBase {
         assert fxgrey != null : "fx:id=\"fxgrey\" was not injected: check your FXML file 'color-palette.fxml'.";
         assert fxblack != null : "fx:id=\"fxblack\" was not injected: check your FXML file 'color-palette.fxml'.";
         assert fxblue != null : "fx:id=\"fxblue\" was not injected: check your FXML file 'color-palette.fxml'.";
-
     }
-
-
 }

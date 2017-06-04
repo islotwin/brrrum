@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import java.lang.*?>
+<AnchorPane id="pane" maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #357e36;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Polygon fx:id="fxplay" fill="WHITE" layoutX="200.0" layoutY="220.0" onMouseClicked="#handleFxPlayAction" rotate="90.0" scaleX="1.8" scaleY="1.3" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <effect>
+            <DropShadow color="#114321" height="44.15" radius="21.86" spread="0.08" width="45.29" />
+         </effect>
+         <points>
+            <Double fx:value="-50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-60.0" />
+         </points>
+      </Polygon>
+      <Text fill="WHITE" layoutX="355.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="30.21875">
+         <effect>
+            <DropShadow color="#0c220e" height="24.04" radius="10.76" spread="0.04" />
+         </effect>
+         <font>
+            <Font name="Helvetica Bold" size="48.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="115.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIGHSCORE" textOrigin="CENTER">
+         <effect>
+            <DropShadow color="#193c1b" />
+         </effect>
+         <font>
+            <Font name="Helvetica Bold" size="28.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="-22.0" layoutY="429.0" pickOnBounds="false" prefHeight="196.0" prefWidth="190.0" scaleX="0.5" scaleY="0.5">
+         <children>
+            <Arc fx:id="fxgreen" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" startAngle="-90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.6682692307692308">
+                     <stops>
+                        <Stop color="#d5ffcd" />
+                        <Stop color="#068c21" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+            <Arc fx:id="fxgrey" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" startAngle="-135.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.6682692307692308">
+                     <stops>
+                        <Stop color="#fffbfb" />
+                        <Stop color="#757575" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+            <Arc fx:id="fxviolet" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop color="#6d5a7c" />
+                        <Stop color="#e3c4ff" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+            <Arc fx:id="fxblue" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" startAngle="135.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endX="0.3076923076923077" endY="0.7115384615384616" startX="1.0" startY="1.0">
+                     <stops>
+                        <Stop color="#97d3cb" />
+                        <Stop color="#349fbf" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+            <Arc fx:id="fxorange" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" startAngle="180.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop color="#f2e4bf" />
+                        <Stop color="#ffc51e" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+            <Arc fx:id="fxyellow" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" startAngle="-45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#f1f5d1" />
+                        <Stop color="#f4f702" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+            <Arc fx:id="fxblack" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endX="0.7115384615384616" endY="0.033653846153846145" startX="0.23557692307692313" startY="0.6490384615384616">
+                     <stops>
+                        <Stop color="#9ca1a0" />
+                        <Stop color="BLACK" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+            <Arc fx:id="fxred" layoutX="100.0" layoutY="100.0" length="45.0" onMouseClicked="#handleFxArcAction" radiusX="96.0" radiusY="97.0" stroke="BLACK" strokeType="INSIDE" type="ROUND">
+               <fill>
+                  <LinearGradient endX="0.0625" endY="1.0" startX="1.0">
+                     <stops>
+                        <Stop color="#901b1b" />
+                        <Stop color="#ffaeae" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow color="WHITE" spread="0.64" />
+               </effect>
+            </Arc>
+         </children>
+         <effect>
+            <DropShadow color="#184a1e" />
+         </effect>
+      </AnchorPane>
+      <ImageView id="auto" fx:id="fxauto" fitHeight="118.0" fitWidth="92.0" layoutX="155.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <DropShadow color="#0f3910" />
+         </effect>
+         <image>
+            <Image url="@../graphics/brum.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

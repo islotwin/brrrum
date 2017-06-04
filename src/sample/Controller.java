@@ -5,7 +5,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,19 +17,14 @@ import java.util.Scanner;
  *  menu.fxml
  */
 public class Controller extends ControllerBase {
-
     @FXML
     Polygon fxplay;
-
     @FXML
     Text fxask;
-
     @FXML
     AnchorPane fxcircle;
-
     @FXML
     Text fxhigh;
-
 
     /**
      * Switches scene to
@@ -38,8 +32,7 @@ public class Controller extends ControllerBase {
      * @throws IOException
      */
     @FXML
-    private void handleCircleAction (MouseEvent event) throws IOException
-    {
+    private void handleCircleAction(MouseEvent event) throws IOException {
         try {
             View.loadGameScene("choose-palette.fxml");
         } catch (IOException e) {
@@ -47,19 +40,16 @@ public class Controller extends ControllerBase {
         }
     }
 
-
     /**
      * Loads highscore. If file not found, creates a new one with the value of 0.
      */
     @FXML
-    private void initialize( )  {
+    private void initialize() {
         Data.setPrev("menu.fxml");
-
         assert fxplay != null : "fx:id=\"fxplay\" was not injected: check your FXML file 'menu.fxml'.";
         assert fxcircle != null : "fx:id=\"fxcircle\" was not injected: check your FXML file 'menu.fxml'.";
         assert fxask != null : "fx:id=\"fxask\" was not injected: check your FXML file 'menu.fxml'.";
         assert fxhigh != null : "fx:id=\"fxhigh\" was not injected: check your FXML file 'menu.fxml'.";
-
         if (!new File("score.txt").exists()) {
             try {
                 Writer writer = new FileWriter("./score.txt");
@@ -69,18 +59,16 @@ public class Controller extends ControllerBase {
                 e.printStackTrace();
             }
         }
-        try
-        {
+        try {
             File file = new File("./score.txt");
             Scanner scanner = new Scanner(file, "UTF-8");
-            if (scanner.hasNext())
-            {
+            if (scanner.hasNext()) {
                 fxhigh.setText(scanner.next());
                 Data.setHighscore(Integer.parseInt(fxhigh.getText()));
             }
             scanner.close();
-        } catch (IOException e) {e.printStackTrace();}
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-    }
+}

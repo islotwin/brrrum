@@ -11,22 +11,18 @@ import javafx.stage.Stage;
  * Main method, starts Application and sets first scene - main menu
  */
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Data.setActivStage(primaryStage);
+        Data.setActiveStage(primaryStage);
         AnchorPane menu = FXMLLoader.load(Main.class.getResource("menu.fxml"));
-        Scene sceneMenu = new Scene (menu);
+        Scene sceneMenu = new Scene(menu);
         primaryStage.setScene(sceneMenu);
         primaryStage.setTitle("BRRRUM");
         primaryStage.show();
         View.setMusic();
-
     }
-
 
     public static void main(String[] args) {
         launch(args);
     }
-
 }
